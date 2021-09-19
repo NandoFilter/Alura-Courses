@@ -1,0 +1,27 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var scr = document.querySelector("canvas");
+    var pen = scr.getContext("2d");
+
+    function drawSquare(x, y, xf, yf, color){
+
+        pen.fillStyle = color;
+        pen.fillRect(x, y, xf, yf);
+        pen.fillStroke = "black";
+        pen.strokeRect(x, y, xf, yf);
+
+    }
+
+    /*
+    var x = 0;
+    
+    while(x <= 600){
+        drawSquare(x, 0, 50, 50, "green");
+        x += 50;
+    } */
+    
+    for(var x = 0; x <= 600; x += 50){
+        drawSquare(x, 0, 50, 50, "green");
+    }
+</script>

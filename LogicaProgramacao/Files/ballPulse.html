@@ -1,0 +1,44 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	var tela = document.querySelector("canvas");
+	var pen = tela.getContext("2d");
+
+	function desenhaCirc(x, y, r, cor){
+
+		pen.fillStyle = cor;
+		pen.beginPath();
+		pen.arc(x, y, r, 0, 2 * Math.PI);
+		pen.fill();
+
+	}
+
+	function limpaTela(){
+
+		pen.clearRect(0, 0, 600, 400);
+
+	}
+
+	var r = 20;
+	var size = 1;
+
+	function ballPulse(){
+
+		limpaTela();
+
+		if(r > 30){ 
+			// Pro Raio diminuir
+			size = -1;
+		}else if(r < 20){
+			// Pro Raio aumentar
+			size = 1;
+		}
+	
+		desenhaCirc(300, 200, r, "blue");
+		r += size;
+
+	}
+
+	setInterval(ballPulse, 20);
+</script>

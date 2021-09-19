@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    // Utilizando Funções Anônimas
+
+    var tela = document.querySelector("canvas");
+    var pen = tela.getContext("2d");
+
+    var desenha = false;
+
+    pen.fillStyle = "gray";
+    pen.fillRect(0, 0, 600, 400);
+
+    function desenhaCirc(evento){
+
+        if(desenha){
+
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+
+            pen.fillStyle = "blue";
+
+            pen.beginPath();
+            pen.arc(x, y, 10, 0, 2 * 3.14);
+            pen.fill();
+
+        }
+
+        console.log(x + "," + y);
+
+    }
+
+    tela.onmousemove = desenhaCirc;
+
+    // Atribuindo diretamente a função anônima
+
+    tela.onmousedown = function(){
+        desenha = true;
+    }
+
+    tela.onmouseup = function(){
+        desenha = false;
+    }
+
+</script>

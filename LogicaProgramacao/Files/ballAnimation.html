@@ -1,0 +1,42 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	var tela = document.querySelector("canvas");
+	var pen = tela.getContext("2d");
+
+	var sentido = 1;
+
+	function desenhaCirc(x, y, r){
+
+		pen.fillStyle = "blue";
+		pen.beginPath();
+		pen.arc(x, y, r, 0, 2 * Math.PI);
+		pen.fill();	
+
+	}
+
+	function limpaTela(){
+		
+		pen.clearRect(0, 0, 600, 400);
+
+	}
+
+	var x = 20;
+
+	function atualizaTela(){
+
+		limpaTela();
+
+		if(x > 600){
+			sentido = -1; // Ir para a Esquerda		
+		}else if(x < 0){
+			sentido = 1;  // Ir para a Direita
+		}
+
+		desenhaCirc(x, 20, 10);
+		x += sentido;
+	}
+
+	setInterval(atualizaTela, 10);
+</script>

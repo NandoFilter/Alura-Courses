@@ -1,0 +1,36 @@
+<canvas width = "600" height = "400"></canvas>
+
+<script>
+
+	var tela = document.querySelector('canvas');
+	var pen = tela.getContext('2d');
+	pen.fillStyle = 'lightgray';
+	pen.fillRect(0, 0, 600, 400);
+
+
+	function desenhaCirc(x, y, r){
+		pen.fillStyle = "blue";
+		pen.beginPath();
+		pen.arc(x, y, r, 0, 2 * Math.PI);
+		pen.fill();
+	}
+
+	function limpaTela(){
+
+		pen.clearRect(0, 0, 600, 400);
+
+	}
+
+	var x = 20;
+
+	function atualizaTela(){
+		
+		limpaTela();
+		desenhaCirc(x, 20, 10);
+		x++;
+
+	}
+
+	setInterval(atualizaTela, 10);	
+
+</script>

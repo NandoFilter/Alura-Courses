@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    // Desenhar na tela com o mouse
+
+    var tela = document.querySelector("canvas");
+    var pen = tela.getContext("2d");
+
+    pen.fillStyle = "gray";
+    pen.fillRect(0, 0, 600, 400);
+
+    var desenha = false;
+
+    function desenhaCirc(evento){
+
+        if(desenha){
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+
+            pen.fillStyle = "blue";
+
+            pen.beginPath();
+            pen.arc(x, y, 10, 0, 2 * 3.14);
+            pen.fill();
+
+        }
+
+        console.log(x + "," + y);
+
+    }
+
+    tela.onmousemove = desenhaCirc;
+
+    function habilitaDesenhar(){
+        desenha = true;
+    }
+
+    function desabilitaDesenhar(){
+        desenha = false;
+    }
+
+    tela.onmousedown = habilitaDesenhar; // Quando o mouse é pressionado
+    tela.onmouseup = desabilitaDesenhar; // Quando o botão do mouse é solto
+
+</script>

@@ -1,0 +1,44 @@
+<canvas width="600" height="400"></canvas>
+Escolha uma cor <input type = "color">
+
+<script>
+
+    // Mudando cor no HTML
+
+    var tela = document.querySelector("canvas");
+    var pen = tela.getContext("2d");
+
+    var desenhar = false;
+
+    pen.fillStyle = "gray";
+    pen.fillRect(0, 0, 600, 400);
+
+    function desenhaCirc(evento){
+
+        if(desenhar){
+
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+
+            var paleta = document.querySelector("input"); 
+            pen.fillStyle = paleta.value; // Extraindo o valor da cor
+            pen.beginPath();
+            pen.arc(x, y, 10, 0, 2 * 3.14);
+            pen.fill();
+        }
+
+        console.log(x + "," + y);
+
+    }
+
+    tela.onmousemove = desenhaCirc;
+
+    tela.onmousedown = function(){
+        desenhar = true;
+    }
+
+    tela.onmouseup = function(){
+        desenhar = false;
+    }
+
+</script>

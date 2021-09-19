@@ -1,0 +1,61 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	var tela = document.querySelector("canvas");
+	var pen = tela.getContext("2d");
+
+	pen.fillStyle = 'grey';
+	pen.fillRect(0, 0, 600, 400);
+
+	pen.fillStyle = 'blue';
+
+	var isBlue = true;
+	var isRed = false;
+	var isGreen = false;
+
+	function desenhaCirc(evento){
+
+		var x = evento.pageX;
+		var y = evento.pageY;
+
+		pen.beginPath();
+		pen.arc(x, y, 10, 0, 2 * 3.14);
+		pen.fill();
+		console.log(x + ',' + y);
+
+	}
+	
+	function changeColor(){
+		
+		if(isBlue == true){
+
+			pen.fillStyle = "red";
+
+			isBlue = false;
+			isRed = true;
+
+		}else if(isRed == true){
+
+			pen.fillStyle = "green";
+
+			isRed = false;
+			isGreen = true;
+
+		}else if(isGreen == true){
+
+			pen.fillStyle = "blue";
+			
+			isGreen = false;
+			isBlue = true;		
+
+		}
+
+		return false;
+
+	}
+
+	tela.onclick = desenhaCirc;
+	tela.oncontextmenu = changeColor;
+
+</script>

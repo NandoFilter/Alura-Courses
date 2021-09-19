@@ -1,0 +1,33 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector("canvas");
+    var pen = tela.getContext('2d');
+
+    pen.fillStyle = "gray";
+    pen.fillRect(0, 0, 600, 400);
+
+    var r = 10;
+
+    function desenhaCirc(evento){
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        pen.fillStyle = "blue";
+
+        if(evento.shiftKey){
+            r += 10;
+        }
+
+        pen.beginPath();
+        pen.arc(x, y, r, 10, 0, 2 * 3.14);
+        pen.fill();
+        console.log(x + "," + y);
+
+    }
+
+    tela.onclick = desenhaCirc;
+
+</script>

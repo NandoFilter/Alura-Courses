@@ -1,0 +1,39 @@
+<canvas width = "600" height = "400"></canvas>
+
+<script>
+
+	var tela = document.querySelector('canvas');
+	var pen = tela.getContext('2d');
+	pen.fillStyle = 'lightgray';
+	pen.fillRect(0, 0, 600, 400);
+
+	var r = 10;
+
+	var cores = ["blue", "red", "green", "yellow"];
+	var indiceCor = 1;
+
+	function desenhaCirc(evento){
+		var x = evento.pageX - tela.offsetLeft;
+		var y = evento.pageY - tela.offsetTop;
+
+		if(evento.shiftKey && r <= 40){
+			r += 10;
+		}else if(evento.altKey && r > 5){
+			r -= 5;
+		}
+
+		pen.fillStyle = cores[indiceCor];
+
+		if(evento.ctrlKey && indiceCor < cores.length){
+			indiceCor++;
+		}else if(evento.ctrlKey && indiceCor == cores.length){
+			indiceCor = 0;
+		}
+
+		pen.beginPath();
+		pen.arc(x, y, r, 0, 2 * Math.PI);
+		pen.fill();
+	}
+
+	tela.onclick = desenhaCirc;
+</script>

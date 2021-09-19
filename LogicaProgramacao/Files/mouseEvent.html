@@ -1,0 +1,20 @@
+<canvas width = "600" height = "400"></canvas>
+
+<script>
+
+	var tela = document.querySelector("canvas");
+	var pen = tela.getContext("2d");
+
+	pen.fillStyle = "grey";
+	pen.fillRect(0, 0, 600, 400);
+
+	function exibeAlerta(evento){
+
+		alert("Cliquei");
+		console.log(evento); // Mostra os eventos do Mouse
+
+	}
+
+	tela.onclick = exibeAlerta; // Funcionará apenas quando clicar no Canvas
+
+</script>
