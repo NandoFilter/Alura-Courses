@@ -14,38 +14,55 @@ class BytebankApp extends StatelessWidget {
 }
 
 class FormularioTransferencia extends StatelessWidget {
+  final TextEditingController _controladorCampoNumeroConta = TextEditingController();
+  final TextEditingController _controladorCampoValor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Criando Transferência'),
+        title: Text('Criando Transferência'),
       ),
       body: Column(
         children: <Widget>[
-          const Padding(
+          Padding(
             padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
             child: TextField(
+              controller: _controladorCampoNumeroConta,
               style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
-                  labelText: 'Número da Conta',
-                  hintText: '0000'
+              decoration: const InputDecoration(
+                labelText: 'Número da Conta',
+                hintText: '0000',
               ),
               keyboardType: TextInputType.number,
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
             child: TextField(
+              controller: _controladorCampoValor,
               style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
-                  icon: Icon(Icons.monetization_on),
-                  labelText: 'Valor',
-                  hintText: '0.00'
+              decoration: const InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: 'Valor',
+                hintText: '0.00',
               ),
               keyboardType: TextInputType.number,
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Confirmar'))
+          ElevatedButton(
+            child: const Text('Confirmar'),
+            onPressed: () {
+              debugPrint('Clicou no Confirmar');
+              final int numConta = int.parse(_controladorCampoNumeroConta.text);
+              final double valor = double.parse(_controladorCampoValor.text);
+
+              if(numConta != null && valor != null){
+                final transferenciaCriada = Transferencia(valor, numConta);
+                debugPrint('$transferenciaCriada');
+              }
+            },
+          )
         ],
       ),
     );
@@ -95,4 +112,9 @@ class Transferencia {
   final int numConta;
 
   Transferencia(this.valor, this.numConta);
+
+  @override
+  String toString() {
+    return 'Transferencia{valor: $valor, numConta: $numConta}';
+  }
 }
